@@ -1,0 +1,105 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+  padding: 18px 24px;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar__inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.navbar__brand-mark {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.navbar__brand-text {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.navbar__nav a {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.navbar__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.25s ease;
+}
+
+.navbar__nav a:hover,
+.navbar__nav a.active {
+  color: #ffffff;
+}
+
+.navbar__nav a:hover::after,
+.navbar__nav a.active::after {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 14px 18px;
+  }
+
+  .navbar__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar__nav {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__brand-text {
+    font-size: 1.15rem;
+  }
+
+  .navbar__nav a {
+    font-size: 0.9rem;
+  }
+}
