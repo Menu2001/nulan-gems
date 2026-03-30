@@ -22,7 +22,7 @@
 .navbar__brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
 }
 
@@ -31,6 +31,15 @@
   font-size: 1.1rem;
   transform: rotate(45deg);
   display: inline-block;
+}
+
+.navbar__brand-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: white;
+  padding: 4px;
 }
 
 .navbar__brand-text {
@@ -96,7 +105,12 @@
 
 @media (max-width: 768px) {
   .navbar__brand-text {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
+  }
+
+  .navbar__brand-logo {
+    width: 36px;
+    height: 36px;
   }
 
   .navbar__nav a {

@@ -8,6 +8,11 @@ import homepageRoutes from "./routes/homepageRoutes.js";
 import gemRoutes from "./routes/gemRoutes.js";
 import showroomRoutes from "./routes/showroomRoutes.js";
 import galleryRoutes from "./routes/galleryRoutes.js";
+import certificationRoutes from "./routes/certificationRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
+import companyRoutes from "./routes/companyRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import contactMessageRoutes from "./routes/contactMessageRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -31,6 +36,11 @@ app.use("/api/homepage", homepageRoutes);
 app.use("/api/gems", gemRoutes);
 app.use("/api/showrooms", showroomRoutes);
 app.use("/api/gallery", galleryRoutes);
+app.use("/api/certifications", certificationRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/company", companyRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/contact-messages", contactMessageRoutes);
 
 const PORT = process.env.PORT || 5000;
 

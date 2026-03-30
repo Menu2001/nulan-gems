@@ -6,6 +6,9 @@ import GemCollection from "./pages/GemCollection";
 import GemDetails from "./pages/GemDetails";
 import ShowRooms from "./pages/ShowRooms";
 import Gallery from "./pages/Gallery";
+import Certifications from "./pages/Certifications";
+import OurCompany from "./pages/OurCompany";
+import ManageContact from "./pages/ContactUs";
 
 export default function App() {
   return (
@@ -17,9 +20,10 @@ export default function App() {
         <Route path="/gem/:id" element={<GemDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/show-rooms" element={<ShowRooms />} />
-        <Route path="/certifications" element={<PlaceholderPage title="Certifications" />} />
-        <Route path="/our-company" element={<PlaceholderPage title="Our Company" />} />
-        <Route path="/contact-us" element={<PlaceholderPage title="Contact Us" />} />
+        <Route path="/certifications" element={<Certifications />} />
+        <Route path="/our-company" element={<OurCompany />} />
+        <Route path="/placeholder" element={<PlaceholderPage />} />   
+        <Route path="/contact-us" element={<ManageContact />} />
       </Routes>
     </>
   );
