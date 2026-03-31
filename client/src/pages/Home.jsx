@@ -4,6 +4,7 @@ import ScrollReveal from "../components/ScrollReveal";
 import "./Home.css";
 
 const API_URL = "http://localhost:5000/api/homepage";
+const SERVER_URL = "http://localhost:5000";
 
 export default function Home() {
   const [homeData, setHomeData] = useState(null);
@@ -51,11 +52,26 @@ export default function Home() {
     root.style.setProperty("--background-color", theme.backgroundColor);
   }, [theme]);
 
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) {
+      return "https://via.placeholder.com/1600x900?text=Nulan+Gems";
+    }
+
+    if (imagePath.startsWith("http")) {
+      return imagePath;
+    }
+
+    return `${SERVER_URL}${imagePath}`;
+  };
+
   if (!homeData) {
     return <div className="home-loading">Loading homepage...</div>;
   }
 
-  const currentImage = homeData.heroImages?.[currentSlide] || "";
+  const currentImage =
+    homeData.heroImages?.length > 0
+      ? getImageUrl(homeData.heroImages[currentSlide])
+      : "https://via.placeholder.com/1600x900?text=Nulan+Gems";
 
   return (
     <main className="home-page">
@@ -115,7 +131,7 @@ export default function Home() {
               <ScrollReveal key={gem._id} delay={index * 120}>
                 <article className="card">
                   <div className="card__image-wrap">
-                    <img src={gem.image} alt={gem.name} />
+                    <img src={getImageUrl(gem.image)} alt={gem.name} />
                   </div>
 
                   <div className="card__body">
@@ -144,9 +160,9 @@ export default function Home() {
 
           <div className="gallery-grid">
             {homeData.galleryPreview?.map((item, index) => (
-              <ScrollReveal key={item._id} delay={index * 120}>
+              <ScrollReveal key={item._id || index} delay={index * 120}>
                 <div className="gallery-item">
-                  <img src={item.image} alt="Nulan Gems gallery preview" />
+                  <img src={getImageUrl(item.image)} alt="Nulan Gems gallery preview" />
                   <div className="gallery-item__overlay">
                     <span>Luxury Collection</span>
                   </div>

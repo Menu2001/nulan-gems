@@ -35,13 +35,13 @@
 }
 
 .gallery-page__hero h1 {
-  margin: 0 0 14px;
+  margin: 0 0 30px;
   font-size: clamp(2.5rem, 5vw, 4.2rem);
 }
 
 .gallery-page__subtitle {
   color: rgba(255, 255, 255, 0.76);
-  line-height: 1.8;
+  line-height: 2.0;
   font-size: 1.02rem;
 }
 

@@ -13,6 +13,7 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 import companyRoutes from "./routes/companyRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import contactMessageRoutes from "./routes/contactMessageRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Nulan Gems API is running" });
 });
 
+app.use("/api/auth", authRoutes);
 app.use("/api/homepage", homepageRoutes);
 app.use("/api/gems", gemRoutes);
 app.use("/api/showrooms", showroomRoutes);

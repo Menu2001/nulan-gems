@@ -47,11 +47,7 @@ const homepageSchema = new mongoose.Schema(
     },
     heroImages: {
       type: [String],
-      default: [
-        "https://images.unsplash.com/photo-1617038260897-41a1f14a0f59?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1588449668365-d15e397f6787?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1600&q=80"
-      ]
+      default: []
     },
     theme: {
       type: themeSchema,

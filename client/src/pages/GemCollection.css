@@ -35,7 +35,7 @@
 }
 
 .gem-page__hero h1 {
-  margin: 0 0 14px;
+  margin: 0 0 30px;
   font-size: clamp(2.5rem, 5vw, 4.2rem);
 }
 
@@ -53,11 +53,15 @@
 
 .gem-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  align-items: stretch;
 }
 
 .gem-card {
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(180deg, rgba(30, 41, 59, 0.88), rgba(15, 23, 42, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 24px;
@@ -73,12 +77,16 @@
 }
 
 .gem-card__image-wrap {
+  width: 100%;
+  height: 300px;
   overflow: hidden;
+  flex-shrink: 0;
+  background: #0f172a;
 }
 
 .gem-card__image-wrap img {
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
@@ -89,53 +97,84 @@
 }
 
 .gem-card__body {
-  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 22px 22px;
 }
 
 .gem-card__category {
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: rgba(212, 175, 55, 0.12);
   color: var(--accent-color);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .gem-card__body h2 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
+  margin: 0 0 12px;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gem-card__body p {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.75;
+  min-height: 84px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
 }
 
 .gem-card__footer {
+  margin-top: auto;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding-top: 8px;
 }
 
 .gem-card__footer strong {
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .gem-card__footer button {
   border: none;
-  padding: 12px 18px;
+  padding: 12px 22px;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--accent-color), #e9c85c);
   color: #111827;
   font-weight: 700;
   cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  white-space: nowrap;
+}
+
+.gem-card__footer button:hover {
+  transform: translateY(-2px);
+  opacity: 0.94;
 }
 
 .gem-empty-state {
@@ -160,7 +199,32 @@
     width: min(1240px, calc(100% - 24px));
   }
 
-  .gem-card__image-wrap img {
-    height: 240px;
+  .gem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gem-card {
+    min-height: auto;
+  }
+
+  .gem-card__image-wrap {
+    height: 250px;
+  }
+
+  .gem-card__body h2 {
+    min-height: auto;
+  }
+
+  .gem-card__body p {
+    min-height: auto;
+  }
+
+  .gem-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gem-card__footer button {
+    width: 100%;
   }
 }

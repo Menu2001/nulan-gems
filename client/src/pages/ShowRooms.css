@@ -22,7 +22,7 @@
   text-align: center;
   padding: 60px 20px 30px;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0  auto;
 }
 
 .showroom-page__eyebrow {
@@ -35,7 +35,7 @@
 }
 
 .showroom-page__hero h1 {
-  margin: 0 0 14px;
+  margin: 0 0 30px;
   font-size: clamp(2.5rem, 5vw, 4.2rem);
 }
 
@@ -53,11 +53,15 @@
 
 .showroom-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  align-items: stretch;
 }
 
 .showroom-card {
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(180deg, rgba(30, 41, 59, 0.88), rgba(15, 23, 42, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 24px;
@@ -73,12 +77,16 @@
 }
 
 .showroom-card__image-wrap {
+  width: 100%;
+  height: 290px;
   overflow: hidden;
+  flex-shrink: 0;
+  background: #0f172a;
 }
 
 .showroom-card__image-wrap img {
   width: 100%;
-  height: 260px;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
@@ -89,25 +97,51 @@
 }
 
 .showroom-card__body {
-  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 22px 24px;
 }
 
 .showroom-card__body h2 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
+  margin: 0 0 14px;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.showroom-card__address,
+.showroom-card__address {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+  min-height: 52px;
+}
+
 .showroom-card__phone {
+  margin: 0 0 14px;
   color: var(--accent-color);
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  min-height: 32px;
 }
 
 .showroom-card__description {
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.75;
   margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
+  min-height: 88px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
 }
 
 .showroom-empty-state {
@@ -132,7 +166,22 @@
     width: min(1240px, calc(100% - 24px));
   }
 
-  .showroom-card__image-wrap img {
-    height: 220px;
+  .showroom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .showroom-card {
+    min-height: auto;
+  }
+
+  .showroom-card__image-wrap {
+    height: 240px;
+  }
+
+  .showroom-card__body h2,
+  .showroom-card__address,
+  .showroom-card__phone,
+  .showroom-card__description {
+    min-height: auto;
   }
 }

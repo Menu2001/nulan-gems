@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 
 const API_URL = "http://localhost:5000/api/company";
 const SERVER_URL = "http://localhost:5000";
