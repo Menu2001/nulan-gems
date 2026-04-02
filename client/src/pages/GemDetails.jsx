@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./GemDetails.css";
 
-const API_URL = "http://localhost:5000/api/gems";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/gems");
 
 export default function GemDetails() {
   const { id } = useParams();
@@ -36,7 +36,7 @@ export default function GemDetails() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   if (loading) {
@@ -81,3 +81,4 @@ export default function GemDetails() {
     </main>
   );
 }
+

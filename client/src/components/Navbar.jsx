@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./Navbar.css";
 
-const API_URL = "http://localhost:5000/api/company";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/company");
 
 export default function Navbar() {
   const [company, setCompany] = useState(null);
@@ -22,7 +22,7 @@ export default function Navbar() {
     fetchCompany();
   }, []);
 
-  const logoUrl = company?.logo ? `${SERVER_URL}${company.logo}` : "";
+  const logoUrl = company?.logo ? buildAssetUrl(company.logo) : "";
 
   return (
     <header className="navbar">
@@ -52,3 +52,4 @@ export default function Navbar() {
     </header>
   );
 }
+

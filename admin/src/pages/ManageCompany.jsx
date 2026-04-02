@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance";
+import { buildApiUrl, buildAssetUrl } from "../config";
 
-const API_URL = "http://localhost:5000/api/company";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/company");
 
 const initialForm = {
   companyName: "",
@@ -32,7 +32,7 @@ export default function ManageCompany() {
         });
 
         if (data.logo) {
-          setPreview(`${SERVER_URL}${data.logo}`);
+          setPreview(buildAssetUrl(data.logo));
         }
       } catch (error) {
         console.error("Failed to load company data:", error);

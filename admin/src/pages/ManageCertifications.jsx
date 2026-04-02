@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance";
+import { buildApiUrl, buildAssetUrl } from "../config";
 
-const API_URL = "http://localhost:5000/api/certifications";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/certifications");
 
 const initialForm = {
   title: "",
@@ -41,7 +41,7 @@ export default function ManageCertifications() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   const handleChange = (e) => {

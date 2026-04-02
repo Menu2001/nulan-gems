@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl } from "../config";
 
-const API_URL = "http://localhost:5000/api/dashboard";
+const API_URL = buildApiUrl("/api/dashboard");
 
 export default function Dashboard() {
   const [data, setData] = useState(null);

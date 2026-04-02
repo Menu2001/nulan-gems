@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./ShowRooms.css";
 
-const API_URL = "http://localhost:5000/api/showrooms";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/showrooms");
 
 export default function ShowRooms() {
   const [showrooms, setShowrooms] = useState([]);
@@ -33,7 +33,7 @@ export default function ShowRooms() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   if (loading) {
@@ -79,3 +79,4 @@ export default function ShowRooms() {
     </main>
   );
 }
+

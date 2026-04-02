@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./OurCompany.css";
 
-const API_URL = "http://localhost:5000/api/company";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/company");
 
 export default function OurCompany() {
   const [company, setCompany] = useState(null);
@@ -24,7 +24,7 @@ export default function OurCompany() {
     fetchCompany();
   }, []);
 
-  const logoUrl = company?.logo ? `${SERVER_URL}${company.logo}` : "";
+  const logoUrl = company?.logo ? buildAssetUrl(company.logo) : "";
 
   if (loading) {
     return <div className="company-page-loading">Loading company details...</div>;
@@ -65,3 +65,4 @@ export default function OurCompany() {
     </main>
   );
 }
+

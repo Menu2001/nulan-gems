@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import ScrollReveal from "../components/ScrollReveal";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./Home.css";
 
-const API_URL = "http://localhost:5000/api/homepage";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/homepage");
 
 export default function Home() {
   const [homeData, setHomeData] = useState(null);
@@ -61,7 +61,7 @@ export default function Home() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   if (!homeData) {
@@ -194,3 +194,4 @@ export default function Home() {
     </main>
   );
 }
+

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance";
+import { buildApiUrl } from "../config";
 
-const API_URL = "http://localhost:5000/api/contact";
+const API_URL = buildApiUrl("/api/contact");
 
 export default function ManageContact() {
   const [form, setForm] = useState({

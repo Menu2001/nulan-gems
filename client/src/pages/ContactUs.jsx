@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl } from "../config";
 import "./ContactUs.css";
 
-const CONTACT_API_URL = "http://localhost:5000/api/contact";
-const MESSAGE_API_URL = "http://localhost:5000/api/contact-messages";
+const CONTACT_API_URL = buildApiUrl("/api/contact");
+const MESSAGE_API_URL = buildApiUrl("/api/contact-messages");
 
 export default function ContactUs() {
   const [data, setData] = useState(null);
@@ -189,3 +190,4 @@ export default function ContactUs() {
     </main>
   );
 }
+

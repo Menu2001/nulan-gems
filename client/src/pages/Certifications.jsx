@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./Certifications.css";
 
-const API_URL = "http://localhost:5000/api/certifications";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/certifications");
 
 export default function Certifications() {
   const [items, setItems] = useState([]);
@@ -33,7 +33,7 @@ export default function Certifications() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   if (loading) {
@@ -79,3 +79,4 @@ export default function Certifications() {
     </main>
   );
 }
+

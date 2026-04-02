@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl } from "../config";
 
-const API_URL = "http://localhost:5000/api/homepage";
+const API_URL = buildApiUrl("/api/homepage");
 
 export default function HomepageManager() {
   const [formData, setFormData] = useState({

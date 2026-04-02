@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance";
+import { buildApiUrl } from "../config";
 
-const API_URL = "http://localhost:5000/api/contact-messages";
+const API_URL = buildApiUrl("/api/contact-messages");
 
 export default function ManageMessages() {
   const [messages, setMessages] = useState([]);

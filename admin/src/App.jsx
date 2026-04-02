@@ -11,9 +11,9 @@ import ManageContact from "./pages/ManageContact";
 import ManageMessages from "./pages/ManageMessages";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { buildApiUrl, buildAssetUrl } from "./config";
 
-const API_URL = "http://localhost:5000/api/company";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/company");
 
 function Layout({ children }) {
   const [company, setCompany] = useState(null);
@@ -32,7 +32,7 @@ function Layout({ children }) {
     fetchCompany();
   }, []);
 
-  const logoUrl = company?.logo ? `${SERVER_URL}${company.logo}` : "";
+  const logoUrl = company?.logo ? buildAssetUrl(company.logo) : "";
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./GemCollection.css";
 
-const API_URL = "http://localhost:5000/api/gems";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/gems");
 
 export default function GemCollection() {
   const [gems, setGems] = useState([]);
@@ -35,7 +35,7 @@ export default function GemCollection() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   if (loading) {
@@ -89,3 +89,4 @@ export default function GemCollection() {
     </main>
   );
 }
+

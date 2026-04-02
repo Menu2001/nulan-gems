@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { buildApiUrl, buildAssetUrl } from "../config";
 import "./Gallery.css";
 
-const API_URL = "http://localhost:5000/api/gallery";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = buildApiUrl("/api/gallery");
 
 export default function Gallery() {
   const [items, setItems] = useState([]);
@@ -33,7 +33,7 @@ export default function Gallery() {
       return imagePath;
     }
 
-    return `${SERVER_URL}${imagePath}`;
+    return buildAssetUrl(imagePath);
   };
 
   if (loading) {
@@ -82,3 +82,4 @@ export default function Gallery() {
     </main>
   );
 }
+
