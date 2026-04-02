@@ -1,4 +1,4 @@
-import Homepage from "../models/Homepage.js";
+import Homepage from "../models/homepage.js";
 import Gem from "../models/Gem.js";
 import Showroom from "../models/Showroom.js";
 

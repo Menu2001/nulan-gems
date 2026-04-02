@@ -13,7 +13,6 @@ const router = express.Router();
 
 router.get("/", getAllGems);
 router.get("/:id", getGemById);
-
 router.post("/", protectAdmin, upload.single("image"), createGem);
 router.put("/:id", protectAdmin, upload.single("image"), updateGem);
 router.delete("/:id", protectAdmin, deleteGem);
