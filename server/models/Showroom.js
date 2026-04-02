@@ -4,6 +4,7 @@ const showroomSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     image: { type: String, required: true },
+    imagePublicId: { type: String, default: "", trim: true },
     address: { type: String, required: true },
     phone: { type: String, required: true },
     description: { type: String, required: true },

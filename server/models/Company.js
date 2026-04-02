@@ -27,6 +27,11 @@ const companySchema = new mongoose.Schema(
       default: "",
       trim: true,
     },
+    logoPublicId: {
+      type: String,
+      default: "",
+      trim: true,
+    },
   },
   { timestamps: true }
 );

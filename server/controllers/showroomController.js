@@ -1,4 +1,5 @@
 import Showroom from "../models/Showroom.js";
+import { deleteImageByPublicId, uploadImageBuffer } from "../utils/cloudinary.js";
 
 export const getShowrooms = async (req, res) => {
   try {
@@ -47,12 +48,15 @@ export const createShowroom = async (req, res) => {
       });
     }
 
+    const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/showrooms");
+
     const newShowroom = await Showroom.create({
       name,
       address,
       phone,
       description,
-      image: `/uploads/${req.file.filename}`,
+      image: uploadedImage.secure_url,
+      imagePublicId: uploadedImage.public_id,
     });
 
     res.status(201).json({
@@ -85,7 +89,10 @@ export const updateShowroom = async (req, res) => {
     showroom.description = description ?? showroom.description;
 
     if (req.file) {
-      showroom.image = `/uploads/${req.file.filename}`;
+      await deleteImageByPublicId(showroom.imagePublicId);
+      const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/showrooms");
+      showroom.image = uploadedImage.secure_url;
+      showroom.imagePublicId = uploadedImage.public_id;
     }
 
     const updatedShowroom = await showroom.save();
@@ -111,6 +118,8 @@ export const deleteShowroom = async (req, res) => {
         message: "Showroom not found",
       });
     }
+
+    await deleteImageByPublicId(deletedShowroom.imagePublicId);
 
     res.status(200).json({
       message: "Showroom deleted successfully",

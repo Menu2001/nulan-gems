@@ -1,4 +1,5 @@
 import Certification from "../models/Certification.js";
+import { deleteImageByPublicId, uploadImageBuffer } from "../utils/cloudinary.js";
 
 export const getCertifications = async (req, res) => {
   try {
@@ -47,12 +48,15 @@ export const createCertification = async (req, res) => {
       });
     }
 
+    const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/certifications");
+
     const newCertification = await Certification.create({
       title,
       issuer,
       description,
       issuedDate,
-      image: `/uploads/${req.file.filename}`,
+      image: uploadedImage.secure_url,
+      imagePublicId: uploadedImage.public_id,
     });
 
     res.status(201).json({
@@ -85,7 +89,10 @@ export const updateCertification = async (req, res) => {
     certification.issuedDate = issuedDate ?? certification.issuedDate;
 
     if (req.file) {
-      certification.image = `/uploads/${req.file.filename}`;
+      await deleteImageByPublicId(certification.imagePublicId);
+      const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/certifications");
+      certification.image = uploadedImage.secure_url;
+      certification.imagePublicId = uploadedImage.public_id;
     }
 
     const updatedCertification = await certification.save();
@@ -111,6 +118,8 @@ export const deleteCertification = async (req, res) => {
         message: "Certification not found",
       });
     }
+
+    await deleteImageByPublicId(deletedCertification.imagePublicId);
 
     res.status(200).json({
       message: "Certification deleted successfully",

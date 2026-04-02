@@ -1,4 +1,5 @@
 import Gem from "../models/Gem.js";
+import { deleteImageByPublicId, uploadImageBuffer } from "../utils/cloudinary.js";
 
 export const getAllGems = async (req, res) => {
   try {
@@ -45,12 +46,13 @@ export const createGem = async (req, res) => {
       });
     }
 
-    const image = `/uploads/${req.file.filename}`;
+    const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/gems");
 
     const newGem = await Gem.create({
       name,
       description,
-      image,
+      image: uploadedImage.secure_url,
+      imagePublicId: uploadedImage.public_id,
       price: Number(price),
       category,
     });
@@ -83,7 +85,10 @@ export const updateGem = async (req, res) => {
     gem.category = category ?? gem.category;
 
     if (req.file) {
-      gem.image = `/uploads/${req.file.filename}`;
+      await deleteImageByPublicId(gem.imagePublicId);
+      const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/gems");
+      gem.image = uploadedImage.secure_url;
+      gem.imagePublicId = uploadedImage.public_id;
     }
 
     const updatedGem = await gem.save();
@@ -107,6 +112,8 @@ export const deleteGem = async (req, res) => {
     if (!deletedGem) {
       return res.status(404).json({ message: "Gem not found" });
     }
+
+    await deleteImageByPublicId(deletedGem.imagePublicId);
 
     res.status(200).json({
       message: "Gem deleted successfully",

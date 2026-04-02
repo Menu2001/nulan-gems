@@ -17,6 +17,11 @@ const gemSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    imagePublicId: {
+      type: String,
+      default: "",
+      trim: true,
+    },
     price: {
       type: Number,
       required: true,

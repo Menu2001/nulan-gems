@@ -1,4 +1,5 @@
 import Company from "../models/Company.js";
+import { deleteImageByPublicId, uploadImageBuffer } from "../utils/cloudinary.js";
 
 export const getCompany = async (req, res) => {
   try {
@@ -33,7 +34,10 @@ export const updateCompany = async (req, res) => {
     company.mission = mission ?? company.mission;
 
     if (req.file) {
-      company.logo = `/uploads/${req.file.filename}`;
+      await deleteImageByPublicId(company.logoPublicId);
+      const uploadedImage = await uploadImageBuffer(req.file, "nulan-gems/company");
+      company.logo = uploadedImage.secure_url;
+      company.logoPublicId = uploadedImage.public_id;
     }
 
     await company.save();
